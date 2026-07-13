@@ -2,14 +2,14 @@
 // No caching, no database — this is intentional (see chat context: no history needed).
 
 const REPORTS = [
-  { id: "00OTv00000AYz6XMAT", label: "Goodlord clients in task" },
+  { id: "00OTv00000AYz6XMAT", label: "Goodlord Clients" },
   { id: "00OTv00000AEvblMAD", label: "Goodlord contracts due 90 days" },
   { id: "00OTv00000AiHNZMA3", label: "Goodlord contracts due 3-6 months" },
   { id: "00OTv00000AiHdhMAF", label: "Goodlord contracts due 6 months+" },
-  { id: "00OTv00000AdsdtMAB", label: "Rightmove clients in task" },
-  { id: "00OTv000007DjUjMAK", label: "Street Agents" },
-  { id: "00OTv00000Ah2QmMAJ", label: "Tier C Agents Final" },
-  { id: "00OTv00000Ah5bNMAR", label: "Tier B Agents Final" },
+  { id: "00OTv00000AdsdtMAB", label: "Rightmove Clients" },
+  { id: "00OTv000007DjUjMAK", label: "Street CRM Clients" },
+  { id: "00OTv00000Ah2QmMAJ", label: "Propoly Tier C Prospects" },
+  { id: "00OTv00000Ah5bNMAR", label: "Propoly Tier B Prospects" },
 ];
 
 const API_VERSION = "v60.0";
@@ -49,7 +49,7 @@ async function runReport(instanceUrl, accessToken, report) {
   }
 
   const data = await res.json();
-  const reportName = data?.attributes?.reportName || report.label;
+  const reportName = report.label;
 
   // Total row count lives in the grand total aggregate for summary/matrix/tabular reports.
   let count = null;
