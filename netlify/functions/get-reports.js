@@ -12,6 +12,7 @@ const REPORTS = [
   { id: "00OTv00000Ah5bNMAR", label: "Propoly Tier B Prospects" },
   { id: "00OTv00000AkiI5MAJ", label: "Build To Rent Agents" },
   { id: "00OTv00000AkoNRMAZ", label: "Reapit CRM Clients" },
+  { id: "00OTv00000AftCTMAZ", label: "Alto CRM Clients" },
 ];
 
 const API_VERSION = "v60.0";
