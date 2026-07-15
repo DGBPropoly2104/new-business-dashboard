@@ -10,6 +10,7 @@ const REPORTS = [
   { id: "00OTv000007DjUjMAK", label: "Street CRM Clients" },
   { id: "00OTv00000Ah2QmMAJ", label: "Propoly Tier C Prospects" },
   { id: "00OTv00000Ah5bNMAR", label: "Propoly Tier B Prospects" },
+  { id: "00OTv00000AkiI5MAJ", label: "Build To Rent Agents" },
 ];
 
 const API_VERSION = "v60.0";
