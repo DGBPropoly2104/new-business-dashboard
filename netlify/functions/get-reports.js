@@ -14,6 +14,11 @@ const REPORTS = [
   { id: "00OTv00000AkoNRMAZ", label: "Reapit CRM Clients" },
   { id: "00OTv00000AftCTMAZ", label: "Alto CRM Clients" },
   { id: "00OTv000007DjUjMAK", label: "Street CRM Clients" },
+  { id: "00OTv00000DYmMDMA1", label: "SDR - Not a fit / campaigns" },
+  { id: "00OTv00000DYqxZMAT", label: "SDR - Future opportunity / nurture" },
+  { id: "00OTv00000DYqr7MAD", label: "SDR Outcome - TR / RLP Opportunity" },
+  { id: "00OTv00000DYqkfMAD", label: "SDR Outcome - PS Meeting" },
+  { id: "00OTv00000DYqHdMAL", label: "SDR Outcome - Propoly qualified" },
 ];
 
 const API_VERSION = "v60.0";
@@ -56,9 +61,15 @@ async function runReport(instanceUrl, accessToken, report) {
   const reportName = report.label;
 
   // Total row count lives in the grand total aggregate for summary/matrix/tabular reports.
+  // Reports can carry more than one aggregate (e.g. a sum alongside RowCount), and their
+  // order in factMap follows reportMetadata.aggregates — so locate "RowCount" by index
+  // rather than assuming it's first.
   let count = null;
   try {
-    count = data.factMap["T!T"].aggregates[0].value;
+    const aggregateOrder = data.reportMetadata.aggregates;
+    const rowCountIndex = aggregateOrder.indexOf("RowCount");
+    const aggregates = data.factMap["T!T"].aggregates;
+    count = rowCountIndex >= 0 ? aggregates[rowCountIndex].value : aggregates[0].value;
   } catch {
     // Fallback: some tabular reports without a grand total row expose row count differently.
     count = Array.isArray(data?.factMap?.["T!T"]?.rows) ? data.factMap["T!T"].rows.length : null;
